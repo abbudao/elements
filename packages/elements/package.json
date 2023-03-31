@@ -64,9 +64,9 @@
   "dependencies": {
     "@stoplight/elements-core": "~7.7.14",
     "@abbudao/elements-core": "^7.9.0",
-    "@stoplight/http-spec": "^5.1.4",
-    "@stoplight/json": "^3.18.1",
-    "@stoplight/mosaic": "^1.33.0",
+    "@stoplight/http-spec": "^5.6.2",
+    "@stoplight/json": "^3.20.2",
+    "@stoplight/mosaic": "^1.40.0",
     "@stoplight/types": "^13.7.0",
     "@stoplight/yaml": "^4.2.3",
     "classnames": "^2.2.6",

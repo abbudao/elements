@@ -66,8 +66,8 @@
   },
   "scripts": {
     "demo": "yarn workspace @stoplight/elements-demo",
-    "elements": "yarn workspace @stoplight/elements",
-    "elements-core": "yarn workspace @stoplight/elements-core",
+    "elements": "yarn workspace @abbudao/elements",
+    "elements-core": "yarn workspace @abbudao/elements-core",
     "elements-dev-portal": "yarn workspace @stoplight/elements-dev-portal",
     "build": "yarn workspace @stoplight/elements-core build && concurrently -n elements,dev-portal \"yarn workspace @stoplight/elements build\" \"yarn workspace @stoplight/elements-dev-portal build\"",
     "build.docs": "yarn workspace @stoplight/elements build.docs",

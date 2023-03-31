@@ -1,4 +1,4 @@
-import $RefParser from '@stoplight/json-schema-ref-parser';
+import $RefParser from '@apidevtools/json-schema-ref-parser';
 import { isObject } from 'lodash';
 import * as React from 'react';
 
