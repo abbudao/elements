@@ -5,15 +5,16 @@ import {
   HttpMethodColors,
   ParsedDocs,
   TryItWithRequestSamples,
-} from '@stoplight/elements-core';
+} from '@abbudao/elements-core';
 import { Box, Flex, Icon, Tab, TabList, TabPanel, TabPanels, Tabs } from '@stoplight/mosaic';
 import { NodeType } from '@stoplight/types';
 import cn from 'classnames';
 import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { OperationNode, ServiceNode } from '../../utils/oas/types';
-import { computeTagGroups, TagGroup } from './utils';
+import type { OperationNode, ServiceNode } from '../../utils/oas/types';
+import type { TagGroup } from './types';
+import { computeTagGroups } from './utils';
 
 type TryItCredentialsPolicy = 'omit' | 'include' | 'same-origin';
 
