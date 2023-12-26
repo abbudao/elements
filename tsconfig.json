@@ -4,6 +4,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "baseUrl": "./packages",
+    "lib": ["es2021", "dom"],
     "paths": {
       "@abbudao/elements": ["./elements/src"],
       "@abbudao/elements/*": ["./elements/src/*"],

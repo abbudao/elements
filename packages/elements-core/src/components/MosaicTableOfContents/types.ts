@@ -4,6 +4,7 @@ export type TableOfContentsProps = {
   Link: CustomLinkComponent;
   maxDepthOpenByDefault?: number;
   externalScrollbar?: boolean;
+  isInResponsiveMode?: boolean;
   onLinkClick?(): void;
 };
 
@@ -16,8 +17,8 @@ export type CustomLinkComponent = React.ComponentType<{
 export type TableOfContentsTagGroups = {
   title: string;
   items: TableOfContentsGroup[];
-  type: "tagGroup"
-}
+  type: 'tagGroup';
+};
 
 export type TableOfContentsItem = TableOfContentsDivider | TableOfContentsGroupItem | TableOfContentsTagGroups;
 

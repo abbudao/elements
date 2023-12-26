@@ -27,7 +27,7 @@ const ModelComponent: React.FC<ModelProps> = ({
   layoutOptions,
   exportProps,
 }) => {
-  const resolveRef = useSchemaInlineRefResolver();
+  const [resolveRef, maxRefDepth] = useSchemaInlineRefResolver();
   const data = useResolvedObject(unresolvedData) as JSONSchema7;
   const { nodeHasChanged } = useOptionsCtx();
 
@@ -61,7 +61,7 @@ const ModelComponent: React.FC<ModelProps> = ({
         <NodeAnnotation change={titleChanged} />
       </Box>
 
-      {exportProps && !layoutOptions?.hideExport && <ExportButton {...exportProps} />}
+      {exportProps && !layoutOptions?.hideExport && !isCompact && <ExportButton {...exportProps} />}
     </Flex>
   );
 
@@ -81,6 +81,7 @@ const ModelComponent: React.FC<ModelProps> = ({
 
       <JsonSchemaViewer
         resolveRef={resolveRef}
+        maxRefDepth={maxRefDepth}
         schema={getOriginalObject(data)}
         nodeHasChanged={nodeHasChanged}
         skipTopLevelDescription
@@ -118,7 +119,7 @@ const ModelExamples = React.memo(({ data, isCollapsible = false }: { data: JSONS
       aria-label="Example"
       value={String(chosenExampleIndex)}
       options={examples.map(({ label }, index) => ({ value: index, label }))}
-      onChange={(value: string | number) => setChosenExampleIndex(parseInt(String(value), 10))}
+      onChange={value => setChosenExampleIndex(parseInt(String(value), 10))}
       size="sm"
       triggerTextPrefix="Example: "
     />
