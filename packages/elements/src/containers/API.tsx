@@ -95,6 +95,11 @@ export interface CommonAPIProps extends RoutingProps {
   customDocs?: Record<string, string>;
 
   /**
+   * Allows overriding the default intro text.
+   */
+  intro?: string;
+
+  /**
    * The amount of references deep should be presented.
    * @default undefined
    */
@@ -118,6 +123,7 @@ export const APIImpl: React.FC<APIProps> = props => {
     tryItCorsProxy,
     customDocs,
     maxRefDepth,
+    intro,
   } = props;
   const location = useLocation();
   const apiDescriptionDocument = propsAreWithDocument(props) ? props.apiDescriptionDocument : undefined;
@@ -140,6 +146,9 @@ export const APIImpl: React.FC<APIProps> = props => {
   const parsedDocument = useParsedValue(document);
   const bundledDocument = useBundleRefsIntoDocument(parsedDocument, { baseUrl: apiDescriptionUrl });
   const serviceNode = React.useMemo(() => transformOasToServiceNode(bundledDocument), [bundledDocument]);
+  if (serviceNode && serviceNode.data && intro) {
+    serviceNode.data.description = intro;
+  }
   const exportProps = useExportDocumentProps({ originalDocument: document, bundledDocument });
 
   if (error) {

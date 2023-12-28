@@ -26,6 +26,7 @@ type SidebarLayoutProps = {
   tryItCredentialsPolicy?: 'omit' | 'include' | 'same-origin';
   tryItCorsProxy?: string;
   customDocs?: DocumentationOverride;
+  intro?: string;
 };
 
 export const APIWithSidebarLayout: React.FC<SidebarLayoutProps> = ({
