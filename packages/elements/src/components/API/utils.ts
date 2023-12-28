@@ -242,15 +242,13 @@ const sortTree = (tree: any) => {
 };
 
 export const computeAPITree = (serviceNode: ServiceNode, config: ComputeAPITreeConfig = {}) => {
-  if (config.intro && serviceNode.data) {
-    serviceNode.data.description = config.intro;
-  }
   const isUsingTagGroups = !isEmpty(getTagGroups(serviceNode));
   const mergedConfig = defaults(config, defaultComputerAPITreeConfig);
 
   const tree = isUsingTagGroups
     ? computeGroupedAPITree(serviceNode, mergedConfig)
     : computeSimpleAPITree(serviceNode, mergedConfig);
+
 
   const sortedTree = sortTags(sortTree(tree));
   return [overviewNode, ...sortedTree];

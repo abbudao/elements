@@ -97,7 +97,7 @@ export interface CommonAPIProps extends RoutingProps {
   /**
    * Allows overriding the default intro text.
    */
-  intro?: string;
+  customDescription?: string;
 
   /**
    * The amount of references deep should be presented.
@@ -123,7 +123,7 @@ export const APIImpl: React.FC<APIProps> = props => {
     tryItCorsProxy,
     customDocs,
     maxRefDepth,
-    intro,
+    customDescription,
   } = props;
   const location = useLocation();
   const apiDescriptionDocument = propsAreWithDocument(props) ? props.apiDescriptionDocument : undefined;
@@ -144,11 +144,12 @@ export const APIImpl: React.FC<APIProps> = props => {
 
   const document = apiDescriptionDocument || fetchedDocument || '';
   const parsedDocument = useParsedValue(document);
+  if (customDescription && (parsedDocument as any).info )  {
+    (parsedDocument as any).info.description = customDescription
+  }
+
   const bundledDocument = useBundleRefsIntoDocument(parsedDocument, { baseUrl: apiDescriptionUrl });
   const serviceNode = React.useMemo(() => transformOasToServiceNode(bundledDocument), [bundledDocument]);
-  if (serviceNode && serviceNode.data && intro) {
-    serviceNode.data.description = intro;
-  }
   const exportProps = useExportDocumentProps({ originalDocument: document, bundledDocument });
 
   if (error) {
@@ -182,6 +183,7 @@ export const APIImpl: React.FC<APIProps> = props => {
     );
   }
 
+
   return (
     <InlineRefResolverProvider document={parsedDocument} maxRefDepth={maxRefDepth}>
       {layout === 'stacked' ? (
@@ -206,6 +208,7 @@ export const APIImpl: React.FC<APIProps> = props => {
           tryItCredentialsPolicy={tryItCredentialsPolicy}
           tryItCorsProxy={tryItCorsProxy}
           customDocs={customDocs}
+          customDescription={customDescription}
         />
       )}
     </InlineRefResolverProvider>

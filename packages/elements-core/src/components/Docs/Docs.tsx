@@ -126,6 +126,11 @@ interface BaseDocsProps {
    * @default undefined
    */
   nodeUnsupported?: NodeUnsupportedFn;
+
+  /**
+   * Provide a custom description to override the description provided in open api schema
+   */
+  customDescription?: string;
 }
 
 export interface DocsProps extends BaseDocsProps {

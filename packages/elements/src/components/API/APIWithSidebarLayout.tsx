@@ -26,7 +26,7 @@ type SidebarLayoutProps = {
   tryItCredentialsPolicy?: 'omit' | 'include' | 'same-origin';
   tryItCorsProxy?: string;
   customDocs?: DocumentationOverride;
-  intro?: string;
+  customDescription?: string;
 };
 
 export const APIWithSidebarLayout: React.FC<SidebarLayoutProps> = ({
@@ -40,11 +40,12 @@ export const APIWithSidebarLayout: React.FC<SidebarLayoutProps> = ({
   tryItCredentialsPolicy,
   tryItCorsProxy,
   customDocs,
+  customDescription,
 }) => {
   const container = React.useRef<HTMLDivElement>(null);
   const tree = React.useMemo(
-    () => computeAPITree(serviceNode, { hideSchemas, hideInternal, customDocs }),
-    [serviceNode, hideSchemas, hideInternal, customDocs],
+    () => computeAPITree(serviceNode, { hideSchemas, hideInternal, customDocs}),
+    [serviceNode, hideSchemas, hideInternal, customDocs, customDescription],
   );
   const location = useLocation();
   const { pathname } = location;
@@ -103,6 +104,7 @@ export const APIWithSidebarLayout: React.FC<SidebarLayoutProps> = ({
           layoutOptions={layoutOptions}
           location={location}
           exportProps={exportProps}
+          customDescription={customDescription}
           tryItCredentialsPolicy={tryItCredentialsPolicy}
           tryItCorsProxy={tryItCorsProxy}
         />

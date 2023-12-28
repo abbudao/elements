@@ -1,23 +1,25 @@
 'use strict';
-import { dirname, join } from 'path';
 const { ProvidePlugin } = require('webpack');
 
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-const config = {
-  stories: [join(__dirname, '../packages/**/*.stories.{js,jsx,ts,tsx}')],
-  features: {
-    storyStoreV7: false
+module.exports = {
+  core: {
+    builder: 'webpack5',
   },
-
+  stories: ['../src/**/*.stories.{js,jsx,ts,tsx}'],
   addons: [
-    getAbsolutePath('@storybook/addon-docs'),
-    getAbsolutePath('@storybook/addon-controls'),
-    getAbsolutePath('@storybook/addon-toolbars'),
-    getAbsolutePath('@storybook/addon-viewport'),
-    getAbsolutePath('@storybook/addon-styling-webpack'),
+    '@storybook/addon-docs',
+    '@storybook/addon-controls',
+    '@storybook/addon-toolbars',
+    '@storybook/addon-viewport',
+    {
+      name: '@storybook/addon-postcss',
+      options: {
+        postcssLoaderOptions: { implementation: require('postcss') },
+      },
+    },
   ],
-
   babel: async () => {
     return {
       presets: [
@@ -33,7 +35,6 @@ const config = {
       ],
     };
   },
-
   webpackFinal: config => {
     config.resolve.plugins = config.resolve.plugins || [];
     config.resolve.plugins.push(new TsconfigPathsPlugin());
@@ -61,19 +62,4 @@ const config = {
 
     return config;
   },
-
-  framework: {
-    name: getAbsolutePath('@storybook/react-webpack5'),
-    options: {},
-  },
-
-  docs: {
-    autodocs: true,
-  },
 };
-
-function getAbsolutePath(value) {
-  return dirname(require.resolve(join(value, 'package.json')));
-}
-
-export default config;

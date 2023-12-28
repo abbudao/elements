@@ -44,7 +44,7 @@
     "release": "sl-scripts release",
     "release.docs": "sl-scripts release:docs",
     "release.dryRun": "sl-scripts release --dry-run --debug",
-    "storybook": "storybook dev -p 9001",
+    "storybook": "start-storybook -p 9001",
     "test": "jest",
     "test.prod": "yarn test --coverage --maxWorkers=2",
     "test.update": "yarn test --updateSnapshot",
@@ -99,7 +99,7 @@
     "react-dom": "16.14.0",
     "react-test-renderer": "^16.8.0",
     "resolve-url-loader": "^5.0.0",
-    "storybook": "next",
+    "storybook": "6.5.3",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.2.8"
   },

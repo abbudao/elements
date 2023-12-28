@@ -101,6 +101,7 @@ Instagram.storyName = 'Instagram';
 
 export const GorilaAPI = Template.bind({});
 GorilaAPI.args = {
-  apiDescriptionDocument: JSON.stringify(gorilaAPI)
+  apiDescriptionDocument: JSON.stringify(gorilaAPI),
+  customDescription: "custom intro"
 };
 GorilaAPI.storyName = 'Gorila API';
