@@ -42,7 +42,7 @@ export const APIWithSidebarLayout: React.FC<SidebarLayoutProps> = ({
 }) => {
   const container = React.useRef<HTMLDivElement>(null);
   const tree = React.useMemo(
-    () => computeAPITree(serviceNode, { hideSchemas, hideInternal, customDocs }),
+    () => computeAPITree(serviceNode, { hideSchemas, hideInternal, customDocs}),
     [serviceNode, hideSchemas, hideInternal, customDocs],
   );
   const location = useLocation();

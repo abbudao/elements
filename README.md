@@ -31,7 +31,7 @@ Let's chat about features, ideas, what you're doing with Elements, on [GitHub Di
 ## 👁️🗨 ️️Examples
 
 Stoplight Elements comes with a few example integration projects, showing you how to utilize Elements with different frameworks.
-- **[react-cra](./examples/react-cra)** - An example app built Create React App utilizing Stoplight Elements.
+- **[react-cra](./examples/react-cra)** - An example app built using Create React App utilizing Stoplight Elements.
 - **[react-gatsby](./examples/react-gatsby)** - An example Gatsby site utilizing Stoplight Elements.
 - **[angular](./examples/angular)** - An angular app utilizing the Web Components distribution of Elements.
 - **[bootstrap](./examples/bootstrap)** - A single HTML page utilizing the Web Components distribution via a global script tag.
@@ -111,8 +111,8 @@ Submit your ideas for new functionality on the [Stoplight Roadmap](https://roadm
 
 ## ⚙️ Integrations
 
-- [Stoplight Studio](https://stoplight.io/studio/?utm_source=github&utm_medium=elements&utm_campaign=readme) - Free visual OpenAPI designer that uses Elements to preview your API descriptions on the fly.
-- [Stoplight Platform](https://stoplight.io/?utm_source=github&utm_medium=elements&utm_campaign=readme) - Collaborative API Design Platform for designing, developing and documenting APIs with hosted documentation powered by Elements.
+- [Stoplight Studio](https://stoplight.io/studio/?utm_source=github.com&utm_medium=referral&utm_campaign=github_repo_elements) - Free visual OpenAPI designer that uses Elements to preview your API descriptions on the fly.
+- [Stoplight Platform](https://stoplight.io/?utm_source=github.com&utm_medium=referral&utm_campaign=github_repo_elements) - Collaborative API Design Platform for designing, developing and documenting APIs with hosted documentation powered by Elements.
 - [LaravelPHP Elements](https://packagist.org/packages/juststeveking/laravel-stoplight-elements) - A simple API documentation package for Laravel using OpenAPI and Stoplight Elements.
 
 ## 🏁 Help Others Utilize Elements

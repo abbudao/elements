@@ -7,7 +7,6 @@ import { simpleApiWithInternalOperations } from '../__fixtures__/api-description
 import { simpleApiWithoutDescription } from '../__fixtures__/api-descriptions/simpleApiWithoutDescription';
 import { todosApiBundled } from '../__fixtures__/api-descriptions/todosApiBundled';
 import { zoomApiYaml } from '../__fixtures__/api-descriptions/zoomApiYaml';
-import { gorilaAPI } from '../__fixtures__/api-descriptions/gorila';
 import { API, APIProps } from './API';
 
 export default {
@@ -101,6 +100,8 @@ Instagram.storyName = 'Instagram';
 
 export const GorilaAPI = Template.bind({});
 GorilaAPI.args = {
-  apiDescriptionDocument: JSON.stringify(gorilaAPI)
+  apiDescriptionUrl: "https://core.gorila.com.br/docs/json",
+  customDescription: "custom intro"
 };
+
 GorilaAPI.storyName = 'Gorila API';

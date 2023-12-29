@@ -7,12 +7,11 @@ import type {
 } from '@stoplight/http-spec/oas';
 import { transformOas2Operation, transformOas2Service } from '@stoplight/http-spec/oas2';
 import { transformOas3Operation, transformOas3Service } from '@stoplight/http-spec/oas3';
-import { encodePointerFragment, pointerToPath } from '@stoplight/json';
-import { NodeType, Extensions  } from '@stoplight/types';
+import { encodePointerFragment, isPlainObject, pointerToPath } from '@stoplight/json';
+import { Extensions, NodeType } from '@stoplight/types';
 import { get, isObject, last } from 'lodash';
 import { OpenAPIObject } from 'openapi3-ts';
 import { Spec } from 'swagger-schema-official';
-import { isPlainObject } from '@stoplight/json';
 
 import { oas2SourceMap } from './oas2';
 import { oas3SourceMap } from './oas3';
@@ -67,7 +66,7 @@ function computeServiceNode(
     data: serviceDocument,
     tags: serviceDocument.tags?.map(tag => tag.name) || [],
     children: computeChildNodes(document, document, map, transformOperation),
-    extensions: getExtensions(document)
+    extensions: getExtensions(document),
   };
 
   return serviceNode;
@@ -136,7 +135,9 @@ function computeChildNodes(
 function findMapMatch(key: string | number, map: ISourceNodeMap[]): ISourceNodeMap | void {
   if (typeof key === 'number') return;
   for (const entry of map) {
-    if (!!entry.match?.match(key) || (entry.notMatch !== void 0 && !entry.notMatch.match(key))) {
+    const escapedKey = key.replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+
+    if (!!entry.match?.match(escapedKey) || (entry.notMatch !== void 0 && !entry.notMatch.match(escapedKey))) {
       return entry;
     }
   }

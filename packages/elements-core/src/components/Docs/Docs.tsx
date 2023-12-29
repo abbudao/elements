@@ -13,6 +13,8 @@ import { HttpService } from './HttpService';
 import { ExportButtonProps } from './HttpService/ExportButton';
 import { Model } from './Model';
 
+type NodeUnsupportedFn = (err: 'dataEmpty' | 'invalidType' | Error) => void;
+
 interface BaseDocsProps {
   /**
    * CSS class to add to the root container.
@@ -116,6 +118,14 @@ interface BaseDocsProps {
   };
 
   nodeHasChanged?: NodeHasChangedFn<React.ReactNode>;
+
+  /**
+   * Allows consumers to know when the node is not supported.
+   *
+   * @type {NodeUnsupportedFn}
+   * @default undefined
+   */
+  nodeUnsupported?: NodeUnsupportedFn;
 }
 
 export interface DocsProps extends BaseDocsProps {
@@ -123,6 +133,7 @@ export interface DocsProps extends BaseDocsProps {
   nodeData: unknown;
   useNodeForRefResolving?: boolean;
   refResolver?: ReferenceResolver;
+  maxRefDepth?: number;
 }
 
 export interface DocsComponentProps<T = unknown> extends BaseDocsProps {
@@ -133,11 +144,19 @@ export interface DocsComponentProps<T = unknown> extends BaseDocsProps {
 }
 
 export const Docs = React.memo<DocsProps>(
-  ({ nodeType, nodeData, useNodeForRefResolving = false, refResolver, nodeHasChanged, ...commonProps }) => {
+  ({
+    nodeType,
+    nodeData,
+    useNodeForRefResolving = false,
+    refResolver,
+    maxRefDepth,
+    nodeHasChanged,
+    ...commonProps
+  }) => {
     const parsedNode = useParsedData(nodeType, nodeData);
 
     if (!parsedNode) {
-      // TODO: maybe report failure
+      commonProps.nodeUnsupported?.('dataEmpty');
       return null;
     }
 
@@ -145,7 +164,7 @@ export const Docs = React.memo<DocsProps>(
 
     if (useNodeForRefResolving) {
       elem = (
-        <InlineRefResolverProvider document={parsedNode.data} resolver={refResolver}>
+        <InlineRefResolverProvider document={parsedNode.data} resolver={refResolver} maxRefDepth={maxRefDepth}>
           {elem}
         </InlineRefResolverProvider>
       );
@@ -159,7 +178,7 @@ export interface ParsedDocsProps extends BaseDocsProps {
   node: ParsedNode;
 }
 
-export const ParsedDocs = ({ node, ...commonProps }: ParsedDocsProps) => {
+export const ParsedDocs = ({ node, nodeUnsupported, ...commonProps }: ParsedDocsProps) => {
   switch (node.type) {
     case 'article':
       return <Article data={node.data} {...commonProps} />;
@@ -170,6 +189,7 @@ export const ParsedDocs = ({ node, ...commonProps }: ParsedDocsProps) => {
     case 'model':
       return <Model data={node.data} {...commonProps} />;
     default:
+      nodeUnsupported?.('invalidType');
       return null;
   }
 };

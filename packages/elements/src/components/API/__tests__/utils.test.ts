@@ -32,9 +32,7 @@ describe('computeTagGroups', () => {
           },
         },
       },
-      "x-tagGroups": [
-        "a"
-      ]
+      'x-tagGroups': ['a'],
     };
 
     const serviceNode = transformOasToServiceNode(apiDocument);
@@ -53,10 +51,6 @@ describe('computeTagGroups', () => {
                 responses: [],
                 servers: [],
                 request: {
-                  body: {
-                    id: '1b5f96cfcd9cb',
-                    contents: [],
-                  },
                   headers: [],
                   query: [],
                   cookie: [],
@@ -64,11 +58,12 @@ describe('computeTagGroups', () => {
                 },
                 tags: [
                   {
-                    id: 'e01820f4e85ed',
+                    id: '9695eccd3aa64',
                     name: 'beta',
                   },
                 ],
                 security: [],
+                securityDeclarationType: 'inheritedFromService',
                 extensions: {},
               },
               name: '/b',
@@ -89,10 +84,6 @@ describe('computeTagGroups', () => {
                 responses: [],
                 servers: [],
                 request: {
-                  body: {
-                    id: 'c9a24d63f1884',
-                    contents: [],
-                  },
                   headers: [],
                   query: [],
                   cookie: [],
@@ -100,11 +91,12 @@ describe('computeTagGroups', () => {
                 },
                 tags: [
                   {
-                    id: '7d65d096f3728',
+                    id: 'df0b92b61db3a',
                     name: 'alpha',
                   },
                 ],
                 security: [],
+                securityDeclarationType: 'inheritedFromService',
                 extensions: {},
               },
               name: '/a',
@@ -167,9 +159,10 @@ describe('computeTagGroups', () => {
                 path: '/c',
                 responses: [],
                 servers: [],
-                request: { body: { id: '7dde7a4e80b0a', contents: [] }, headers: [], query: [], cookie: [], path: [] },
-                tags: [{ id: 'e01820f4e85ed', name: 'beta' }],
+                request: { headers: [], query: [], cookie: [], path: [] },
+                tags: [{ id: '9695eccd3aa64', name: 'beta' }],
                 security: [],
+                securityDeclarationType: 'inheritedFromService',
                 extensions: {},
               },
               name: '/c',
@@ -184,9 +177,10 @@ describe('computeTagGroups', () => {
                 path: '/b',
                 responses: [],
                 servers: [],
-                request: { body: { id: '1b5f96cfcd9cb', contents: [] }, headers: [], query: [], cookie: [], path: [] },
-                tags: [{ id: 'e01820f4e85ed', name: 'beta' }],
+                request: { headers: [], query: [], cookie: [], path: [] },
+                tags: [{ id: '9695eccd3aa64', name: 'beta' }],
                 security: [],
+                securityDeclarationType: 'inheritedFromService',
                 extensions: {},
               },
               name: '/b',
@@ -206,9 +200,10 @@ describe('computeTagGroups', () => {
                 path: '/a',
                 responses: [],
                 servers: [],
-                request: { body: { id: 'c9a24d63f1884', contents: [] }, headers: [], query: [], cookie: [], path: [] },
-                tags: [{ id: '7d65d096f3728', name: 'alpha' }],
+                request: { headers: [], query: [], cookie: [], path: [] },
+                tags: [{ id: 'df0b92b61db3a', name: 'alpha' }],
                 security: [],
+                securityDeclarationType: 'inheritedFromService',
                 extensions: {},
               },
               name: '/a',
@@ -269,9 +264,10 @@ describe('computeTagGroups', () => {
                 path: '/b',
                 responses: [],
                 servers: [],
-                request: { body: { id: '1b5f96cfcd9cb', contents: [] }, headers: [], query: [], cookie: [], path: [] },
-                tags: [{ id: 'e01820f4e85ed', name: 'beta' }],
+                request: { headers: [], query: [], cookie: [], path: [] },
+                tags: [{ id: '9695eccd3aa64', name: 'beta' }],
                 security: [],
+                securityDeclarationType: 'inheritedFromService',
                 extensions: {},
               },
               name: '/b',
@@ -286,9 +282,10 @@ describe('computeTagGroups', () => {
                 path: '/b',
                 responses: [],
                 servers: [],
-                request: { body: { id: '64c420fe39197', contents: [] }, headers: [], query: [], cookie: [], path: [] },
-                tags: [{ id: 'e01820f4e85ed', name: 'beta' }],
+                request: { headers: [], query: [], cookie: [], path: [] },
+                tags: [{ id: '9695eccd3aa64', name: 'beta' }],
                 security: [],
+                securityDeclarationType: 'inheritedFromService',
                 extensions: {},
               },
               name: '/b',
@@ -308,9 +305,10 @@ describe('computeTagGroups', () => {
                 path: '/a',
                 responses: [],
                 servers: [],
-                request: { body: { id: 'c9a24d63f1884', contents: [] }, headers: [], query: [], cookie: [], path: [] },
-                tags: [{ id: '7d65d096f3728', name: 'alpha' }],
+                request: { headers: [], query: [], cookie: [], path: [] },
+                tags: [{ id: 'df0b92b61db3a', name: 'alpha' }],
                 security: [],
+                securityDeclarationType: 'inheritedFromService',
                 extensions: {},
               },
               name: '/a',
@@ -387,10 +385,6 @@ describe('computeTagGroups', () => {
                 responses: [],
                 servers: [],
                 request: {
-                  body: {
-                    contents: [],
-                    id: '1b5f96cfcd9cb',
-                  },
                   headers: [],
                   query: [],
                   cookie: [],
@@ -399,10 +393,11 @@ describe('computeTagGroups', () => {
                 tags: [
                   {
                     name: 'Beta',
-                    id: 'c028e10befb64',
+                    id: 'c6a65e6457b55',
                   },
                 ],
                 security: [],
+                securityDeclarationType: 'inheritedFromService',
                 extensions: {},
               },
               name: '/b',
@@ -423,10 +418,6 @@ describe('computeTagGroups', () => {
                 responses: [],
                 servers: [],
                 request: {
-                  body: {
-                    contents: [],
-                    id: 'c9a24d63f1884',
-                  },
                   headers: [],
                   query: [],
                   cookie: [],
@@ -434,11 +425,12 @@ describe('computeTagGroups', () => {
                 },
                 tags: [
                   {
-                    id: '7d65d096f3728',
+                    id: 'df0b92b61db3a',
                     name: 'alpha',
                   },
                 ],
                 security: [],
+                securityDeclarationType: 'inheritedFromService',
                 extensions: {},
               },
               name: '/a',
@@ -497,10 +489,6 @@ describe('computeTagGroups', () => {
                 responses: [],
                 servers: [],
                 request: {
-                  body: {
-                    contents: [],
-                    id: '1b5f96cfcd9cb',
-                  },
                   headers: [],
                   query: [],
                   cookie: [],
@@ -508,16 +496,15 @@ describe('computeTagGroups', () => {
                 },
                 tags: [
                   {
-                    id: 'e01820f4e85ed',
+                    id: '9695eccd3aa64',
                     name: 'beta',
                   },
                 ],
                 security: [],
                 extensions: {
-                  "x-tagGroups": [
-                    "a"
-                  ]
+                  'x-tagGroups': ['a'],
                 },
+                securityDeclarationType: 'inheritedFromService',
               },
               name: '/b',
               tags: ['beta'],
@@ -537,10 +524,6 @@ describe('computeTagGroups', () => {
                 responses: [],
                 servers: [],
                 request: {
-                  body: {
-                    contents: [],
-                    id: 'c9a24d63f1884',
-                  },
                   headers: [],
                   query: [],
                   cookie: [],
@@ -548,16 +531,15 @@ describe('computeTagGroups', () => {
                 },
                 tags: [
                   {
-                    id: '7d65d096f3728',
+                    id: 'df0b92b61db3a',
                     name: 'alpha',
                   },
                 ],
                 security: [],
                 extensions: {
-                  "x-tagGroups": [
-                    "a"
-                  ]
+                  'x-tagGroups': ['a'],
                 },
+                securityDeclarationType: 'inheritedFromService',
               },
               name: '/a',
               tags: ['alpha'],

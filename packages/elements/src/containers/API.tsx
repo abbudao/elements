@@ -14,6 +14,7 @@ import { Box, Flex, Icon } from '@stoplight/mosaic';
 import { flow } from 'lodash';
 import * as React from 'react';
 import { useQuery } from 'react-query';
+import { useLocation } from 'react-router-dom';
 
 import { APIWithSidebarLayout } from '../components/API/APIWithSidebarLayout';
 import { APIWithStackedLayout } from '../components/API/APIWithStackedLayout';
@@ -92,6 +93,17 @@ export interface CommonAPIProps extends RoutingProps {
    * Allows overriding the default documentation, by passing an object with the operationId as key and the documentation as value.
    */
   customDocs?: Record<string, string>;
+
+  /**
+   * Allows overriding the default intro text.
+   */
+  customDescription?: string;
+
+  /**
+   * The amount of references deep should be presented.
+   * @default undefined
+   */
+  maxRefDepth?: number;
 }
 
 const propsAreWithDocument = (props: APIProps): props is APIPropsWithDocument => {
@@ -110,7 +122,10 @@ export const APIImpl: React.FC<APIProps> = props => {
     tryItCredentialsPolicy,
     tryItCorsProxy,
     customDocs,
+    maxRefDepth,
+    customDescription,
   } = props;
+  const location = useLocation();
   const apiDescriptionDocument = propsAreWithDocument(props) ? props.apiDescriptionDocument : undefined;
 
   const { data: fetchedDocument, error } = useQuery(
@@ -128,7 +143,14 @@ export const APIImpl: React.FC<APIProps> = props => {
   );
 
   const document = apiDescriptionDocument || fetchedDocument || '';
-  const parsedDocument = useParsedValue(document);
+  const parsedDocument: any = useParsedValue(document);
+
+  if (customDescription && parsedDocument)  {
+    if (parsedDocument["info"]){
+      parsedDocument["info"]["description"] = customDescription
+    }
+  }
+
   const bundledDocument = useBundleRefsIntoDocument(parsedDocument, { baseUrl: apiDescriptionUrl });
   const serviceNode = React.useMemo(() => transformOasToServiceNode(bundledDocument), [bundledDocument]);
   const exportProps = useExportDocumentProps({ originalDocument: document, bundledDocument });
@@ -164,8 +186,9 @@ export const APIImpl: React.FC<APIProps> = props => {
     );
   }
 
+
   return (
-    <InlineRefResolverProvider document={parsedDocument}>
+    <InlineRefResolverProvider document={parsedDocument} maxRefDepth={maxRefDepth}>
       {layout === 'stacked' ? (
         <APIWithStackedLayout
           serviceNode={serviceNode}
@@ -174,6 +197,7 @@ export const APIImpl: React.FC<APIProps> = props => {
           exportProps={exportProps}
           tryItCredentialsPolicy={tryItCredentialsPolicy}
           tryItCorsProxy={tryItCorsProxy}
+          location={location}
         />
       ) : (
         <APIWithSidebarLayout

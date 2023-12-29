@@ -17,4 +17,6 @@ export const ApiElement = createElementClass(API, {
   tryItCredentialsPolicy: { type: 'string' },
   tryItCorsProxy: { type: 'string' },
   customDocs: { type: 'object' },
+  customDescription: { type: 'string' },
+  maxRefDepth: { type: 'number' },
 });

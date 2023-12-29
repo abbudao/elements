@@ -249,6 +249,7 @@ export const computeAPITree = (serviceNode: ServiceNode, config: ComputeAPITreeC
     ? computeGroupedAPITree(serviceNode, mergedConfig)
     : computeSimpleAPITree(serviceNode, mergedConfig);
 
+
   const sortedTree = sortTags(sortTree(tree));
   return [overviewNode, ...sortedTree];
 };

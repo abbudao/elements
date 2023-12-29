@@ -25,7 +25,9 @@ type Node<T, D> = {
   tags: string[];
 };
 
-export type ServiceNode = Node<NodeType.HttpService, IHttpService> & { children: ServiceChildNode[] } & { extensions?: Extensions };
+export type ServiceNode = Node<NodeType.HttpService, IHttpService> & { children: ServiceChildNode[] } & {
+  extensions?: Extensions;
+};
 export type ServiceChildNode = OperationNode | SchemaNode;
 export type OperationNode = Node<NodeType.HttpOperation, IHttpOperation>;
 export type SchemaNode = Node<NodeType.Model, JSONSchema7>;
