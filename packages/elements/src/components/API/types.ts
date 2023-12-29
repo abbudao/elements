@@ -17,5 +17,4 @@ export interface ComputeAPITreeConfig {
   hideSchemas?: boolean;
   hideInternal?: boolean;
   customDocs?: DocumentationOverride;
-  customDescription?: string;
 }

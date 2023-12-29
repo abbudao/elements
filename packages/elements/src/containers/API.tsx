@@ -143,9 +143,12 @@ export const APIImpl: React.FC<APIProps> = props => {
   );
 
   const document = apiDescriptionDocument || fetchedDocument || '';
-  const parsedDocument = useParsedValue(document);
-  if (customDescription && (parsedDocument as any).info )  {
-    (parsedDocument as any).info.description = customDescription
+  const parsedDocument: any = useParsedValue(document);
+
+  if (customDescription && parsedDocument)  {
+    if (parsedDocument["info"]){
+      parsedDocument["info"]["description"] = customDescription
+    }
   }
 
   const bundledDocument = useBundleRefsIntoDocument(parsedDocument, { baseUrl: apiDescriptionUrl });
@@ -208,7 +211,6 @@ export const APIImpl: React.FC<APIProps> = props => {
           tryItCredentialsPolicy={tryItCredentialsPolicy}
           tryItCorsProxy={tryItCorsProxy}
           customDocs={customDocs}
-          customDescription={customDescription}
         />
       )}
     </InlineRefResolverProvider>

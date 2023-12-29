@@ -19,7 +19,7 @@ import { ServerInfo } from './ServerInfo';
 export type HttpServiceProps = DocsComponentProps<Partial<IHttpService>>;
 
 const HttpServiceComponent = React.memo<HttpServiceProps>(
-  ({ data: unresolvedData, location = {}, layoutOptions, customDescription, exportProps }) => {
+  ({ data: unresolvedData, location = {}, layoutOptions, exportProps }) => {
     const { nodeHasChanged } = useOptionsCtx();
     const data = useResolvedObject(unresolvedData) as IHttpService;
     const { ref: layoutRef, isCompact } = useIsCompact(layoutOptions);
@@ -94,4 +94,4 @@ const HttpServiceComponent = React.memo<HttpServiceProps>(
 );
 HttpServiceComponent.displayName = 'HttpService.Component';
 
-export const HttpService = withErrorBoundary<HttpServiceProps>(HttpServiceComponent, { recoverableProps: ['data', 'customDescription'] });
+export const HttpService = withErrorBoundary<HttpServiceProps>(HttpServiceComponent, { recoverableProps: ['data'] });
